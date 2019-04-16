@@ -5,7 +5,7 @@ import './App.css';
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cuisine: '', price: ''};
+    this.state = {cuisine: '', price: 'single'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,27 +22,29 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A cuisine was submitted: ' + this.state.cuisine + ' with price: ' + this.state.price);
+    alert('cuisine: ' + this.state.cuisine + ', price: ' + this.state.price);
     event.preventDefault();
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Cuisine     
-          <input type="text" value={this.state.cuisine} onChange={this.handleChange} name='cuisine'/>
 
+        <label>
+          Cuisine (Asian, Mediterranean, etc.):    
+          <input type="text" value={this.state.cuisine} onChange={this.handleChange} name='cuisine'/>
+<br />
            <label>
           Pick your price range:
 
-          <select value={this.state.price} onChange={this.handleChange} type='price' name = 'price'>
-            <option value="single">'$'</option>
-            <option value="double">'$$'</option>
-            <option value="triple">'$$$'</option>
+          <select value={this.state.price} onChange={this.handleChange} name = 'price'>
+            <option value="single">$</option>
+            <option value="double">$$</option>
+            <option value="triple">$$$</option>
           </select>
         </label>
         </label>
+        <br />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -56,10 +58,12 @@ class App extends Component {
         <header className="App-header">
 
       {   /* <img src={require("./cheesesteak.jpeg")} className="App-logo" alt = ""/> */ }
-
-          <p>
-            Welcome to your personalized Philly Restaurant recommender!
-          </p>
+      <h1> Welcome! </h1>
+          <h6>
+            Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!
+            <br />
+            
+          </h6>
       < InputForm />
         </header>
       </div>
