@@ -32,12 +32,31 @@ class InputForm extends React.Component {
 
         <label>
           Cuisine (Asian, Mediterranean, etc.):    
-          <input type="text" value={this.state.cuisine} onChange={this.handleChange} name='cuisine'/>
+          <select value={this.state.price} onChange={this.handleChange} name = 'price'>
+            <option value="african">African</option>
+            <option value="newamerican">American (new)</option>
+            <option value="tradamerican">American (Traditional)</option>
+            <option value="bbq">Barbeque</option>
+            <option value="breakfast_brunch">Breakfast/Brunch</option>
+            <option value="caribbean">Caribbean</option>
+            <option value="chinese">Chinese</option>
+            <option value="greek">Greek</option>
+            <option value="indpak">Indian</option>
+            <option value="italian">Italian</option>
+            <option value="japanese">Japanese</option>
+            <option value="mediterranean">Mediterranean</option>
+            <option value="mexican">Mexican</option>
+            <option value="mideastern">Middle Eastern</option>
+            <option value="pizza">Pizza</option>
+            <option value="sandwiches">Sandwiches</option>
+            <option value="vegetarian">Vegetarian</option>
+          </select>
 <br />
            <label>
           Pick your price range:
 
           <select value={this.state.price} onChange={this.handleChange} name = 'price'>
+            // asd
             <option value="single">$</option>
             <option value="double">$$</option>
             <option value="triple">$$$</option>
@@ -57,7 +76,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
 
-      {   /* <img src={require("./cheesesteak.jpeg")} className="App-logo" alt = ""/> */ }
+      { /* <img src={require("./philadelphia.jpg")} className="App-logo" alt = ""/> */}
       <h1> Welcome! </h1>
           <h6>
             Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!
