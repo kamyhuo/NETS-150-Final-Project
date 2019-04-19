@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-native": "^0.59.4",
     "react-native-cli": "^2.0.1",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-swipe-card": "^0.1.4",
+    "yelp-fusion": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

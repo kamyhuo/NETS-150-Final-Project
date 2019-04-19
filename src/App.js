@@ -1,6 +1,8 @@
+'use strict';
 import React, { Component } from 'react';
-
+import Cards, { Card } from 'react-swipe-card'
 import './App.css';
+import RestaurantList from './RestaurantList';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -22,13 +24,19 @@ class InputForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('cuisine: ' + this.state.cuisine + ', price: ' + this.state.price);
+
     event.preventDefault();
+  }
+
+  onFormSubmit = (searchLocationQuery) => {
+    this.setState({
+      searchLocationQuery: searchLocationQuery
+    })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
 
         <label>
           Cuisine (Asian, Mediterranean, etc.):    
@@ -72,6 +80,21 @@ class InputForm extends React.Component {
 
 class App extends Component {
   render() {
+      const data = ['Alexandre', 'Thomas', 'Lucien']
+
+const Wrapper = () => {
+  return (
+    <Cards onEnd={action => ('end')} className='master-root'>
+        {data.map(item => 
+          <Card 
+            onSwipeLeft={action => ('swipe left')} 
+            onSwipeRight={action => ('swipe right')}>
+            <h2>{item}</h2>
+          </Card>
+        )}
+      </Cards>
+  );
+}
     return (
       <div className="App">
         <header className="App-header">
@@ -83,11 +106,17 @@ class App extends Component {
             <br />
             
           </h6>
-      < InputForm />
+      <InputForm />
+<RestaurantList searchLocationQuery = {'Philadelphia'}/>
+
         </header>
       </div>
+
     );
-  }
+ 
+
+  
+}
 }
 
 
