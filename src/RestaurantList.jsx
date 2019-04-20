@@ -21,7 +21,7 @@ class RestaurantList extends Component {
 
     componentDidUpdate (prevProps, prevState) {
         if(this.props.cuisine !== prevProps.cuisine) {
-            this.setState({
+            this.setState({ 
                 results: [], 
             }, () => this.getRestaurantsFromApi(this.props.cuisine, this.props.price))
         }
