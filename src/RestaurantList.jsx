@@ -16,14 +16,14 @@ class RestaurantList extends Component {
     }
     
     componentDidMount () {
-        this.getRestaurantsFromApi(this.props.searchLocationQuery);
+        this.getRestaurantsFromApi(this.props.cuisine);
     }
 
     componentDidUpdate (prevProps, prevState) {
-        if(this.props.searchLocationQuery !== prevProps.searchLocationQuery) {
+        if(this.props.cuisine !== prevProps.cuisine) {
             this.setState({
                 results: [], 
-            }, () => this.getRestaurantsFromApi(this.props.searchLocationQuery))
+            }, () => this.getRestaurantsFromApi(this.props.cuisine))
         }
     }
     //function to get information from API 

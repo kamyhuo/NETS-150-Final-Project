@@ -7,7 +7,7 @@ import RestaurantList from './RestaurantList';
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchLocationQuery: "", 
+    this.state = { 
       cuisine: '', 
     price: 'single'};
 
@@ -28,7 +28,7 @@ class InputForm extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    this.props.onFormSubmit(this.state.searchLocationQuery)
+    this.props.onFormSubmit(this.state.cuisine)
   } 
 
 
@@ -39,7 +39,7 @@ class InputForm extends React.Component {
 
         <label>
           Cuisine (Asian, Mediterranean, etc.):    
-          <select value={this.state.searchLocationQuery} onChange={this.handleChange} name = 'searchLocationQuery'>
+          <select value={this.state.cuisine} onChange={this.handleChange} name = 'cuisine'>
             <option value="african">African</option>
             <option value="newamerican">American (new)</option>
             <option value="tradamerican">American (Traditional)</option>
@@ -81,12 +81,12 @@ class App extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      searchLocationQuery: null
+      cuisine: null
     };
   }
-    onFormSubmit = (searchLocationQuery) => {
+    onFormSubmit = (cuisine) => {
     this.setState({
-      searchLocationQuery: searchLocationQuery
+      cuisine: cuisine
     })
   }
 
@@ -119,7 +119,7 @@ const Wrapper = () => {
           </h6>
       <InputForm onFormSubmit = {this.onFormSubmit}/>
 <RestaurantList 
-          searchLocationQuery = {this.state.searchLocationQuery}/> 
+          cuisine = {this.state.cuisine}/> 
 
         </header>
       </div>
