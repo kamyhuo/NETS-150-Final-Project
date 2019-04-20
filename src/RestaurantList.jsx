@@ -16,18 +16,24 @@ class RestaurantList extends Component {
     }
     
     componentDidMount () {
-        this.getRestaurantsFromApi(this.props.cuisine);
+        this.getRestaurantsFromApi(this.props.cuisine, this.props.price);
     }
 
     componentDidUpdate (prevProps, prevState) {
         if(this.props.cuisine !== prevProps.cuisine) {
             this.setState({
                 results: [], 
-            }, () => this.getRestaurantsFromApi(this.props.cuisine))
+            }, () => this.getRestaurantsFromApi(this.props.cuisine, this.props.price))
+        }
+
+                if(this.props.price !== prevProps.price) {
+            this.setState({
+                results: [], 
+            }, () => this.getRestaurantsFromApi(this.props.cuisine, this.props.price))
         }
     }
     //function to get information from API 
-    getRestaurantsFromApi = (locationSearched) => {
+    getRestaurantsFromApi = (cuisine, price) => {
         //UI feedback to tell the user when we are retrieving infromation from the API 
         this.setState({ loading: true })
 
@@ -41,7 +47,8 @@ class RestaurantList extends Component {
         },
         //option params passed to API call to retrieve only breakfast and lunch spots 
         params: {
-            categories: locationSearched,
+            categories: cuisine,
+            price: price
         }
         })
         .then((res) => {

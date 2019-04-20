@@ -9,7 +9,7 @@ class InputForm extends React.Component {
     super(props);
     this.state = { 
       cuisine: '', 
-    price: 'single'};
+    price: '1'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -28,7 +28,7 @@ class InputForm extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    this.props.onFormSubmit(this.state.cuisine)
+    this.props.onFormSubmit(this.state.cuisine, this.state.price)
   } 
 
 
@@ -64,9 +64,9 @@ class InputForm extends React.Component {
 
           <select value={this.state.price} onChange={this.handleChange} name = 'price'>
             // asd
-            <option value="single">$</option>
-            <option value="double">$$</option>
-            <option value="triple">$$$</option>
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
           </select>
         </label>
         </label>
@@ -81,12 +81,14 @@ class App extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      cuisine: null
+      cuisine: null,
+      price: null
     };
   }
-    onFormSubmit = (cuisine) => {
+    onFormSubmit = (cuisine, price) => {
     this.setState({
-      cuisine: cuisine
+      cuisine: cuisine,
+      price: price
     })
   }
 
@@ -119,7 +121,7 @@ const Wrapper = () => {
           </h6>
       <InputForm onFormSubmit = {this.onFormSubmit}/>
 <RestaurantList 
-          cuisine = {this.state.cuisine}/> 
+          cuisine = {this.state.cuisine} price = {this.state.price}/> 
 
         </header>
       </div>
