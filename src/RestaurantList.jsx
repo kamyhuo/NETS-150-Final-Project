@@ -16,24 +16,24 @@ class RestaurantList extends Component {
     }
     
     componentDidMount () {
-        this.getRestaurantsFromApi('Philadelphia');
+        this.getRestaurantsFromApi(this.props.searchLocationQuery);
     }
 
     componentDidUpdate (prevProps, prevState) {
         if(this.props.searchLocationQuery !== prevProps.searchLocationQuery) {
             this.setState({
                 results: [], 
-            }, () => this.getRestaurantsFromApi(this.props.searchLocationQuery, this.props.searchCategory))
+            }, () => this.getRestaurantsFromApi(this.props.searchLocationQuery))
         }
     }
     //function to get information from API 
-    getRestaurantsFromApi = (locationSearched, categorySearched) => {
+    getRestaurantsFromApi = (locationSearched) => {
         //UI feedback to tell the user when we are retrieving infromation from the API 
         this.setState({ loading: true })
 
         //using a proxy server cors-anywhere to get rid of the CROS probblem 
         //SUPER HOT TIP: passing the location variable, which equals to the user's input (see below). Instead of grabbbing the entire API, it will only retrieve the restaurants that are closed to the lcoation information we entered. This makes the lodading wayyyyyyy faster.
-        axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=${locationSearched}`, {
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Philadelphia`, {
         //required authorization format from API 
         headers: {
             //to get the API from the .env file use process.env.{variable name}
@@ -41,7 +41,7 @@ class RestaurantList extends Component {
         },
         //option params passed to API call to retrieve only breakfast and lunch spots 
         params: {
-            categories: 'breakfast_brunch',
+            categories: locationSearched,
         }
         })
         .then((res) => {

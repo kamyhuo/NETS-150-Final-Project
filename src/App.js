@@ -7,10 +7,12 @@ import RestaurantList from './RestaurantList';
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cuisine: '', price: 'single'};
+    this.state = {searchLocationQuery: "", 
+      cuisine: '', 
+    price: 'single'};
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -19,28 +21,25 @@ class InputForm extends React.Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: event.target.value
     });
+
   }
 
-  handleSubmit(event) {
-
+  handleFormSubmit(event) {
     event.preventDefault();
-  }
+    this.props.onFormSubmit(this.state.searchLocationQuery)
+  } 
 
-  onFormSubmit = (searchLocationQuery) => {
-    this.setState({
-      searchLocationQuery: searchLocationQuery
-    })
-  }
+
 
   render() {
     return (
-      <form>
+      <form onSubmit={(e) => this.handleFormSubmit(e)}>
 
         <label>
           Cuisine (Asian, Mediterranean, etc.):    
-          <select value={this.state.price} onChange={this.handleChange} name = 'price'>
+          <select value={this.state.searchLocationQuery} onChange={this.handleChange} name = 'searchLocationQuery'>
             <option value="african">African</option>
             <option value="newamerican">American (new)</option>
             <option value="tradamerican">American (Traditional)</option>
@@ -79,6 +78,18 @@ class InputForm extends React.Component {
 }
 
 class App extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+      searchLocationQuery: null
+    };
+  }
+    onFormSubmit = (searchLocationQuery) => {
+    this.setState({
+      searchLocationQuery: searchLocationQuery
+    })
+  }
+
   render() {
       const data = ['Alexandre', 'Thomas', 'Lucien']
 
@@ -106,8 +117,9 @@ const Wrapper = () => {
             <br />
             
           </h6>
-      <InputForm />
-<RestaurantList searchLocationQuery = {'Philadelphia'}/>
+      <InputForm onFormSubmit = {this.onFormSubmit}/>
+<RestaurantList 
+          searchLocationQuery = {this.state.searchLocationQuery}/> 
 
         </header>
       </div>
