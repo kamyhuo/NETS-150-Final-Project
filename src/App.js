@@ -119,6 +119,9 @@ class App extends Component {
         onChange={this.handlePriceChange}
         options={priceOptions}
       />
+      <form onSubmit={this.handleFormSubmit}>
+        <input type="submit" value="Submit" />
+      </form>
 <RestaurantList 
           cuisine = {this.state.cuisine} price = {this.state.price}/> 
 
