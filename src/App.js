@@ -1,5 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
+import Select from 'react-select';
 import Cards, { Card } from 'react-swipe-card'
 import './App.css';
 import RestaurantList from './RestaurantList';
@@ -31,51 +32,33 @@ class InputForm extends React.Component {
     this.props.onFormSubmit(this.state.cuisine, this.state.price)
   } 
 
-
-
-  render() {
-    return (
-      <form onSubmit={(e) => this.handleFormSubmit(e)}>
-
-        <label>
-          Cuisine (Asian, Mediterranean, etc.):    
-          <select value={this.state.cuisine} onChange={this.handleChange} name = 'cuisine'>
-            <option value="african">African</option>
-            <option value="newamerican">American (new)</option>
-            <option value="tradamerican">American (Traditional)</option>
-            <option value="bbq">Barbeque</option>
-            <option value="breakfast_brunch">Breakfast/Brunch</option>
-            <option value="caribbean">Caribbean</option>
-            <option value="chinese">Chinese</option>
-            <option value="greek">Greek</option>
-            <option value="indpak">Indian</option>
-            <option value="italian">Italian</option>
-            <option value="japanese">Japanese</option>
-            <option value="mediterranean">Mediterranean</option>
-            <option value="mexican">Mexican</option>
-            <option value="mideastern">Middle Eastern</option>
-            <option value="pizza">Pizza</option>
-            <option value="sandwiches">Sandwiches</option>
-            <option value="vegetarian">Vegetarian</option>
-          </select>
-<br />
-           <label>
-          Pick your price range:
-
-          <select value={this.state.price} onChange={this.handleChange} name = 'price'>
-            // asd
-            <option value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-          </select>
-        </label>
-        </label>
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
 }
+
+const cuisineOptions = [
+  { value: 'african', label: 'African' },
+  { value: 'newamerican', label: 'American (new)' },
+  { value: 'tradamerican', label: 'American (Traditional)' },
+  { value: 'bbq', label: 'Barbeque' },
+  { value: 'breakfast_brunch', label: 'Breakfast/Brunch' },
+  { value: 'caribbean', label: 'Caribbean' },
+  { value: 'chinese', label: 'Chinese' },
+  { value: 'greek', label: 'Greek' },
+  { value: 'indpak', label: 'Indian' },
+  { value: 'italian', label: 'Italian' },
+  { value: 'japanese', label: 'Japanese' },
+  { value: 'mediterranean', label: 'Mediterranean' },
+  { value: 'mexican', label: 'Mexican' },
+  { value: 'mideastern', label: 'Middle Eastern' },
+  { value: 'pizza', label: 'Pizza' },
+  { value: 'sandwiches', label: 'Sandwiches' },
+  { value: 'vegetarian', label: 'Vegetarian' },
+];
+
+const priceOptions = [
+  { value: '1', label: '$' },
+  { value: '2', label: '$$' },
+  { value: '3', label: '$$$' },
+]
 
 class App extends Component {
     constructor(props) {
@@ -85,6 +68,23 @@ class App extends Component {
       price: null
     };
   }
+  handleCuisineChange = (cuisine) => {
+    this.setState( state => {
+      return {
+        multiValue: cuisineOptions
+      };
+    });
+    console.log(`Cuisine selected:`, cuisine);
+  }
+
+  handlePriceChange = (price) => {
+    this.setState( state => {
+      return {
+        multiValue: priceOptions
+      };
+    });
+    console.log(`Price selected:`, price);
+  }
     onFormSubmit = (cuisine, price) => {
     this.setState({
       cuisine: cuisine,
@@ -93,33 +93,32 @@ class App extends Component {
   }
 
   render() {
-      const data = ['Alexandre', 'Thomas', 'Lucien']
-
-const Wrapper = () => {
-  return (
-    <Cards onEnd={action => ('end')} className='master-root'>
-        {data.map(item => 
-          <Card 
-            onSwipeLeft={action => ('swipe left')} 
-            onSwipeRight={action => ('swipe right')}>
-            <h2>{item}</h2>
-          </Card>
-        )}
-      </Cards>
-  );
-}
+    const { cuisine } = this.state;
+    const { price } = this.state;
     return (
       <div className="App">
         <header className="App-header">
 
-      { /* <img src={require("./philadelphia.jpg")} className="App-logo" alt = ""/> */}
       <h1> Welcome! </h1>
           <h6>
             Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!
             <br />
             
           </h6>
-      <InputForm onFormSubmit = {this.onFormSubmit}/>
+      <Select
+        name="Cuisine"
+        placeholder="Cuisine"
+        value={cuisine}
+        onChange={this.handleCuisinehange}
+        options={cuisineOptions}
+      />
+      <Select
+        name="Price"
+        placeholder="Price"
+        value={price}
+        onChange={this.handlePriceChange}
+        options={priceOptions}
+      />
 <RestaurantList 
           cuisine = {this.state.cuisine} price = {this.state.price}/> 
 
@@ -132,7 +131,6 @@ const Wrapper = () => {
   
 }
 }
-
 
 
 export default App;
