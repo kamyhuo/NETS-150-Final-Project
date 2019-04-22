@@ -74,6 +74,7 @@ class App extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
 
     this.state = {
       items: [
@@ -102,23 +103,15 @@ class App extends Component {
    handleChange(selectedItems) {
     this.setState({ selectedItems });
   }
+handlePriceChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
 
-  handleCuisineChange = (cuisine) => {
-    this.setState( state => {
-      return {
-        multiValue: cuisineOptions
-      };
+    this.setState({
+      [name]: event.target.value
     });
-    console.log(`Cuisine selected:`, cuisine);
-  }
 
-  handlePriceChange = (price) => {
-    this.setState( state => {
-      return {
-        multiValue: priceOptions
-      };
-    });
-    console.log(`Price selected:`, price);
   }
     onFormSubmit = (cuisine, price) => {
     this.setState({
@@ -146,6 +139,17 @@ class App extends Component {
         selectedItems={selectedItems}
         onChange={this.handleChange}
       />
+      <label>
+          Pick your price range:
+
+          <select value={this.state.price} onChange={this.handlePriceChange} name = 'price'>
+            // asd
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+          </select>
+        </label>
+
       <form onSubmit={this.handleFormSubmit}>
         <input type="submit" value="Submit" />
       </form>
