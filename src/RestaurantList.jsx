@@ -12,7 +12,9 @@ class RestaurantList extends Component {
         results: [],
         errorState: null,
         loading: false,
-        i: 0
+        i: 0,
+        yes: [],
+        no: []
         };
     }
     
@@ -119,13 +121,13 @@ class RestaurantList extends Component {
         return(
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
 
-            <button onClick={() => this.setState(prevState => {
+            <button onClick={(e) => {this.state.yes.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}>Yes</button>
+    })}}>Yes</button>
 
-                <button onClick={() => this.setState(prevState => {
+                <button onClick={(e) => {this.state.no.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}>No</button></div>
+    })}}>No</button></div>
 
         )
     }
