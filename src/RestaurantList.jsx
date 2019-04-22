@@ -65,7 +65,7 @@ class RestaurantList extends Component {
 
     renderEmptyState () {
         return (
-            <h2 className = "heading-tertiary">`Hang tight! We are working on getting you the list of best brunch spots in your neighbourhood! `</h2>
+            <h2 className = "heading-tertiary">`Hang tight! We are working on getting you the list of best brunch spots in your neighborhood! `</h2>
         )
     }
 
@@ -107,12 +107,8 @@ class RestaurantList extends Component {
                     <a 
                         href= {result.url} 
                         className = "RestaurantInfo__website">
-                            More infomration on Yelp
+                            More information on Yelp
                     </a>
-
-                    <img 
-                        src = {require('./assets/YelpLogo_Trademark/Screen(R)/Yelp_trademark_RGB.png')} alt = "yelp"
-                        className = "RestaurantInfo__yelp"/>
                 </div>  
             );
         });
