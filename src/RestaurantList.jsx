@@ -113,6 +113,9 @@ class RestaurantList extends Component {
                         className = "RestaurantInfo__website">
                             More information on Yelp
                     </a>
+                    <a
+                         
+                    />
 
                 </div>  
             );
@@ -123,11 +126,11 @@ class RestaurantList extends Component {
 
             <button onClick={(e) => {this.state.yes.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}>Yes</button>
+    })}}><img src="YES.png" height="50px" width="50px" /></button>
 
                 <button onClick={(e) => {this.state.no.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}>No</button></div>
+    })}}><img src="NO.png" height="50px" width="50px"/></button></div>
 
         )
     }
