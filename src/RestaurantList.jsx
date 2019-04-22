@@ -124,13 +124,13 @@ class RestaurantList extends Component {
         return(
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
 
-            <button onClick={(e) => {this.state.yes.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
+            <button onClick={(e) => {this.state.no.push(RestaruantList[(this.state.i)].id); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="YES.png" height="50px" width="50px" /></button>
+    })}}><img src="NO.png" height="50px" width="50px" /></button>
 
-                <button onClick={(e) => {this.state.no.push(RestaruantList[(this.state.i)]); this.setState(prevState => {
+                <button onClick={(e) => {this.state.yes.push(RestaruantList[(this.state.i)].id); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="NO.png" height="50px" width="50px"/></button></div>
+    })}}><img src="YES.png" height="50px" width="50px"/></button></div>
 
         )
     }
