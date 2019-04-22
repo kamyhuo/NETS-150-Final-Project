@@ -63,7 +63,6 @@ class InputForm extends React.Component {
           Pick your price range:
 
           <select value={this.state.price} onChange={this.handleChange} name = 'price'>
-            // asd
             <option value="1">$</option>
             <option value="2">$$</option>
             <option value="3">$$$</option>
