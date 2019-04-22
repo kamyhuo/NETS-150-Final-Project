@@ -12,6 +12,7 @@ class RestaurantList extends Component {
         results: [],
         errorState: null,
         loading: false,
+        i: 0
         };
     }
     
@@ -71,6 +72,7 @@ class RestaurantList extends Component {
 
     renderRestaurantInfo () {
         
+
         const RestaruantList = this.state.results.map((result) => {
             
             return (    
@@ -109,12 +111,22 @@ class RestaurantList extends Component {
                         className = "RestaurantInfo__website">
                             More information on Yelp
                     </a>
+
                 </div>  
             );
         });
 
         return(
-            <div className="RestuarantList__gallery">{RestaruantList}</div>
+            <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
+
+            <button onClick={() => this.setState(prevState => {
+       return {i: prevState.i + 1}
+    })}>Yes</button>
+
+                <button onClick={() => this.setState(prevState => {
+       return {i: prevState.i + 1}
+    })}>No</button></div>
+
         )
     }
 
