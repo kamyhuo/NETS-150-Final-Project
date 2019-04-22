@@ -101,9 +101,11 @@ class App extends Component {
   }
 
    handleChange(selectedItems) {
-    this.setState({ selectedItems });
+    this.setState({ 
+      cuisine: selectedItems[0]
+    });
   }
-handlePriceChange(event) {
+    handlePriceChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -111,14 +113,13 @@ handlePriceChange(event) {
     this.setState({
       [name]: event.target.value
     });
-
   }
     onFormSubmit = (cuisine, price) => {
-    this.setState({
-      cuisine: cuisine,
-      price: price
-    })
-  }
+      this.setState({
+        cuisine: cuisine,
+        price: price
+      })
+    }
 
   render() {
     const { items, selectedItems } = this.state;
@@ -154,7 +155,7 @@ handlePriceChange(event) {
         <input type="submit" value="Submit" />
       </form>
 <RestaurantList 
-          cuisine = {this.state.cuisine} price = {this.state.price}/> 
+          cuisine = {'mexican'} price = {this.state.price}/> 
 
         </header>
       </div>
