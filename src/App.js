@@ -93,26 +93,11 @@ class App extends Component {
   }
 
   render() {
-      const data = ['Alexandre', 'Thomas', 'Lucien']
-
-const Wrapper = () => {
-  return (
-    <Cards onEnd={action => ('end')} className='master-root'>
-        {data.map(item => 
-          <Card 
-            onSwipeLeft={action => ('swipe left')} 
-            onSwipeRight={action => ('swipe right')}>
-            <h2>{item}</h2>
-          </Card>
-        )}
-      </Cards>
-  );
-}
     return (
       <div className="App">
         <header className="App-header">
 
-      { /* <img src={require("./philadelphia.jpg")} className="App-logo" alt = ""/> */}
+      {<img src={require("./donut.png")} className="App-logo" alt = ""/>}
       <h1> Welcome! </h1>
           <h6>
             Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!

@@ -68,7 +68,7 @@ class RestaurantList extends Component {
 
     renderEmptyState () {
         return (
-            <h2 className = "heading-tertiary">`Hang tight! We are working on getting you the list of best brunch spots in your neighborhood! `</h2>
+            <h2 className = "heading-tertiary">Hang tight! We're working on finding your favorite restaurants in Philly!</h2>
         )
     }
 
@@ -82,7 +82,7 @@ class RestaurantList extends Component {
                     className = "RestaurantInfo"
                     key = {result.id}
                 >
-                    <img src = {result.image_url} alt = "" className = "RestaurantInfo__img" />
+                    <img src = {result.image_url} width = "400px" alt = "" className = "RestaurantInfo__img" />
                     <h2 className = "heading-tertiary RestaurantInfo__name">{result.name}</h2>
                     
                     <p className = "RestaurantInfo__para">
