@@ -1,9 +1,14 @@
 'use strict';
 import React, { Component } from 'react';
-import Select from 'react-select';
 import Cards, { Card } from 'react-swipe-card'
 import './App.css';
 import RestaurantList from './RestaurantList';
+import MultiSelect from "@kenshooui/react-multi-select";
+import "@kenshooui/react-multi-select/dist/style.css"
+
+import type {
+    Option,
+} from '../select-item.js';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -51,13 +56,13 @@ const cuisineOptions = [
   { value: 'mideastern', label: 'Middle Eastern' },
   { value: 'pizza', label: 'Pizza' },
   { value: 'sandwiches', label: 'Sandwiches' },
-  { value: 'vegetarian', label: 'Vegetarian' },
+  { value: 'vegetarian', label: 'Vegetarian' }
 ];
 
 const priceOptions = [
   { value: '1', label: '$' },
   { value: '2', label: '$$' },
-  { value: '3', label: '$$$' },
+  { value: '3', label: '$$$' }
 ]
 
 class App extends Component {
@@ -67,7 +72,37 @@ class App extends Component {
       cuisine: null,
       price: null
     };
+
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      items: [
+  { id: 'african', label: 'African' },
+  { id: 'newamerican', label: 'American (new)' },
+  { id: 'tradamerican', label: 'American (Traditional)' },
+  { id: 'bbq', label: 'Barbeque' },
+  { id: 'breakfast_brunch', label: 'Breakfast/Brunch' },
+  { id: 'caribbean', label: 'Caribbean' },
+  { id: 'chinese', label: 'Chinese' },
+  { id: 'greek', label: 'Greek' },
+  { id: 'indpak', label: 'Indian' },
+  { id: 'italian', label: 'Italian' },
+  { id: 'japanese', label: 'Japanese' },
+  { id: 'mediterranean', label: 'Mediterranean' },
+  { id: 'mexican', label: 'Mexican' },
+  { id: 'mideastern', label: 'Middle Eastern' },
+  { id: 'pizza', label: 'Pizza' },
+  { id: 'sandwiches', label: 'Sandwiches' },
+  { id: 'vegetarian', label: 'Vegetarian' }
+      ],
+      selectedItems: []
+    };
   }
+
+   handleChange(selectedItems) {
+    this.setState({ selectedItems });
+  }
+
   handleCuisineChange = (cuisine) => {
     this.setState( state => {
       return {
@@ -93,6 +128,7 @@ class App extends Component {
   }
 
   render() {
+    const { items, selectedItems } = this.state;
     const { cuisine } = this.state;
     const { price } = this.state;
     return (
@@ -105,19 +141,10 @@ class App extends Component {
             <br />
             
           </h6>
-      <Select
-        name="Cuisine"
-        placeholder="Cuisine"
-        value={cuisine}
-        onChange={this.handleCuisinehange}
-        options={cuisineOptions}
-      />
-      <Select
-        name="Price"
-        placeholder="Price"
-        value={price}
-        onChange={this.handlePriceChange}
-        options={priceOptions}
+      <MultiSelect
+        items={items}
+        selectedItems={selectedItems}
+        onChange={this.handleChange}
       />
       <form onSubmit={this.handleFormSubmit}>
         <input type="submit" value="Submit" />

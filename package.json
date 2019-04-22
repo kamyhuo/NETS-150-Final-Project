@@ -6,6 +6,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@kenshooui/react-multi-select": "^1.0.72",
+    "@khanacademy/react-multi-select": "^0.3.2",
     "axiom": "^0.1.6",
     "axios": "^0.18.0",
     "react": "^16.8.6",
