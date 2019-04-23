@@ -44,7 +44,6 @@ class InputForm extends React.Component {
         <label>
           Cuisine (Asian, Mediterranean, etc.):    
           <select value={this.state.cuisine} onChange={this.handleChange} name = 'cuisine'>
-            <option value="african">African</option>
             <option value="newamerican">American (new)</option>
             <option value="tradamerican">American (Traditional)</option>
             <option value="bbq">Barbeque</option>
