@@ -110,7 +110,7 @@ class RestaurantList extends Component {
                     className = "RestaurantInfo"
                     key = {result.id}
                 >
-                    <img src = {result.image_url} width = "400px" alt = "" className = "RestaurantInfo__img" />
+                    <img src = {result.image_url} height = "320px" alt = "" className = "RestaurantInfo__img" />
                     <h2 className = "heading-tertiary RestaurantInfo__name">{result.name}</h2>
                     
                     <p className = "RestaurantInfo__para">
