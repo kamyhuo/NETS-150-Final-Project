@@ -16,7 +16,7 @@ class Cl extends React.Component {
           <Carousel >
         
         {this.props.like.map(like => {
-        return ( <h1>{like}</h1> )
+        return ( <h4>{like}</h4> )
       })} 
      
       </Carousel>
@@ -160,7 +160,7 @@ class RestaurantList extends Component {
     })}}><img src="NO.png" height="50px" width="50px" /></button>
 
                 <button onClick={(e) => {this.state.yes.push(this.state.id[this.state.i]);
-                 this.state.like.push(<h1><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h1>); 
+                 this.state.like.push(<h4><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h4>); 
                  this.setState(prevState => {
        return {i: prevState.i + 1}
     })}}><img src="YES.png" height="50px" width="50px"/></button>
