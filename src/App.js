@@ -12,7 +12,8 @@ class InputForm extends React.Component {
     super(props);
     this.state = { 
       cuisine: '', 
-    price: '1'};
+    price: '1',
+    showing: false};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -31,7 +32,7 @@ class InputForm extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    this.props.onFormSubmit(this.state.cuisine, this.state.price)
+    this.props.onFormSubmit(this.state.cuisine, this.state.price, this.state.showing)
   } 
 
 
@@ -84,17 +85,20 @@ class App extends Component {
     super(props);
     this.state = {
       cuisine: null,
-      price: null
+      price: null,
+      showing: false
     };
   }
-    onFormSubmit = (cuisine, price) => {
+    onFormSubmit = (cuisine, price, showing) => {
     this.setState({
       cuisine: cuisine,
-      price: price
+      price: price,
+      showing: true
     })
   }
 
   render() {
+    const { showing } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -123,10 +127,9 @@ class App extends Component {
           </h6>
       <InputForm onFormSubmit = {this.onFormSubmit}/>
 
-<RestaurantList 
-          cuisine = {this.state.cuisine} price = {this.state.price}/> 
-
-
+{ showing && ( <RestaurantList 
+          cuisine = {this.state.cuisine} price = {this.state.price}/>)}
+                    
         </header>
 
       </div>
