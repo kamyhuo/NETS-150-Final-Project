@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactDOM from 'react-dom'
+
+
 
 class RestaurantList extends Component {
 
@@ -14,7 +17,8 @@ class RestaurantList extends Component {
         loading: false,
         i: 0,
         yes: [],
-        no: []
+        no: [],
+        id: []
         };
     }
     
@@ -76,7 +80,7 @@ class RestaurantList extends Component {
         
 
         const RestaruantList = this.state.results.map((result) => {
-            
+            this.state.id.push(result.id);
             return (    
                 <div 
                     className = "RestaurantInfo"
@@ -124,18 +128,26 @@ class RestaurantList extends Component {
         return(
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
 
-            <button onClick={(e) => {this.state.no.push(RestaruantList[(this.state.i)].id); this.setState(prevState => {
+            <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]); this.setState(prevState => {
        return {i: prevState.i + 1}
     })}}><img src="NO.png" height="50px" width="50px" /></button>
 
-                <button onClick={(e) => {this.state.yes.push(RestaruantList[(this.state.i)].id); this.setState(prevState => {
+                <button onClick={(e) => {this.state.yes.push(this.state.id[this.state.i]); this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="YES.png" height="50px" width="50px"/></button></div>
+    })}}><img src="YES.png" height="50px" width="50px"/></button>
+
+</div>
+
+
 
         )
     }
 
+
     render() {
+        console.log(this.state.no);
+
+
         return (
             
             <section className="RestuarantList">
@@ -147,6 +159,8 @@ class RestaurantList extends Component {
                 }   
             </section>
         )}
+
+
 
 }
 export default RestaurantList

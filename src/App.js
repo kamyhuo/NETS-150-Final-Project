@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card'
 import './App.css';
 import RestaurantList from './RestaurantList';
+import ReactDOM from 'react-dom'
+import Carousel from './RestaurantList';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -101,13 +103,31 @@ class App extends Component {
           <h6>
             Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!
             <br />
-            
+            <br />
+            <div class="boxed">
+            <br />
+            <h2> How it works: </h2>
+            <br />
+            1. Select your cuisine type
+            <br />
+            2. Select your price range
+            <br />
+            3. You will be presented with the highest rated restaurants matching your preferences. <br />
+            Click HEART if you are interested in the restaurant, and ANGRY FACE if you are not.<br />
+             <br />
+            At the end, you will be presented with all of your interested restaurants and<br />
+            a STAR restaurant recommendation similar to ALL the restaurants you are interested in!<br />
+            <br />
+            </div>
           </h6>
       <InputForm onFormSubmit = {this.onFormSubmit}/>
+
 <RestaurantList 
           cuisine = {this.state.cuisine} price = {this.state.price}/> 
 
+
         </header>
+
       </div>
 
     );
