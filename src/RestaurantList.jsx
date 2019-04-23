@@ -152,7 +152,9 @@ class RestaurantList extends Component {
         });
 
         return(
-        <div>
+
+    <div>
+        {    (this.state.i < 5) ?     
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
 
             <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]);  this.setState(prevState => {
@@ -163,21 +165,22 @@ class RestaurantList extends Component {
                  this.state.like.push(<h4><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h4>); 
                  this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="YES.png" height="50px" width="50px"/></button>
+    })}}><img src="YES.png" height="50px" width="50px"/></button></div> : null
+}
 
-    </div>
-    < br />
-<div>
+   
+   
 
- </div>
-  <Cl like = {this.state.like} />
+
+ {    (this.state.i == 5) ?    <Cl like = {this.state.like} />   : null  }
+
+
+
 </div>
 
 
-
-
-        )
-    }
+        )}
+    
 
 
     render() {
