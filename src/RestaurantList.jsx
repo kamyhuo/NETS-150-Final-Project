@@ -2,7 +2,29 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactDOM from 'react-dom'
+import Carousel from 'nuka-carousel';
 
+class Cl extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+  render() {
+    return (
+              <div style={{ width: "700px", margin: "auto" }}>
+          <Carousel >
+        
+        {this.props.like.map(like => {
+        return ( <h1>{like}</h1> )
+      })} 
+     
+      </Carousel>
+      </div>
+      
+    );
+  }
+}
 
 
 class RestaurantList extends Component {
@@ -18,7 +40,9 @@ class RestaurantList extends Component {
         i: 0,
         yes: [],
         no: [],
-        id: []
+        id: [],
+        like: [],
+        all: null
         };
     }
     
@@ -77,11 +101,11 @@ class RestaurantList extends Component {
     }
 
     renderRestaurantInfo () {
-        
 
         const RestaruantList = this.state.results.map((result) => {
             this.state.id.push(result.id);
             return (    
+                <div>
                 <div 
                     className = "RestaurantInfo"
                     key = {result.id}
@@ -122,21 +146,33 @@ class RestaurantList extends Component {
                     />
 
                 </div>  
+                   
+                    </div>
             );
         });
 
         return(
+        <div>
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
 
-            <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]); this.setState(prevState => {
+            <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]);  this.setState(prevState => {
        return {i: prevState.i + 1}
     })}}><img src="NO.png" height="50px" width="50px" /></button>
 
-                <button onClick={(e) => {this.state.yes.push(this.state.id[this.state.i]); this.setState(prevState => {
+                <button onClick={(e) => {this.state.yes.push(this.state.id[this.state.i]);
+                 this.state.like.push(<h1><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h1>); 
+                 this.setState(prevState => {
        return {i: prevState.i + 1}
     })}}><img src="YES.png" height="50px" width="50px"/></button>
 
+    </div>
+    < br />
+<div>
+
+ </div>
+  <Cl like = {this.state.like} />
 </div>
+
 
 
 
@@ -145,11 +181,11 @@ class RestaurantList extends Component {
 
 
     render() {
-        console.log(this.state.no);
+        console.log(this.state.like);
 
 
         return (
-            
+
             <section className="RestuarantList">
                 {this.state.results.length ? this.renderRestaurantInfo() : this.renderEmptyState()}
 

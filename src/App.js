@@ -6,6 +6,7 @@ import RestaurantList from './RestaurantList';
 import ReactDOM from 'react-dom'
 import Carousel from './RestaurantList';
 
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
