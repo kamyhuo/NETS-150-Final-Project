@@ -2,25 +2,24 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MaximalCliquesWithoutPivot {
 
-    int nodesCount;
-    ArrayList<Vertex> graph = new ArrayList<Vertex>();
+    HashMap<String, Vertex> graph = new HashMap<String, Vertex>();
 
     class Vertex implements Comparable<Vertex> {
-        int x;
-
+        String id;
         int degree;
         ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
 
-        public int getX() {
-            return x;
+        public String getID() {
+            return id;
         }
 
-        public void setX(int x) {
-            this.x = x;
+        public void setID(String id) {
+            this.id = id;
         }
 
         public ArrayList<Vertex> getNeighbors() {
@@ -49,35 +48,34 @@ public class MaximalCliquesWithoutPivot {
         }
     }
 
-    void initGraph() {
-        graph.clear();
-        for (int i = 0; i < nodesCount; i++) {
-            Vertex V = new Vertex();
-            V.setX(i);
-            graph.add(V);
-        }
-    }
-
-    int readTotalGraphCount(BufferedReader bufReader) throws Exception {
-
-        return Integer.parseInt(bufReader.readLine());
-    }
-
     // Reads Input 
-    void readNextGraph(BufferedReader bufReader) throws Exception {
+    void readNextGraph(BufferedReader br) throws Exception  {
         try {
-            nodesCount = Integer.parseInt(bufReader.readLine());
-            int edgesCount = Integer.parseInt(bufReader.readLine());
-            initGraph();
+            //initGraph();
+            String str;
+            ArrayList<Vertex> currLineVertices = new ArrayList<Vertex>();
+            while ((str = br.readLine()) != null) {
+                currLineVertices.clear();
+                String[] strArr = str.split(" ");
+                for (int i = 0; i < strArr.length; i++) {
+                    String u = strArr[i];
 
-            for (int k = 0; k < edgesCount; k++) {
-                String[] strArr = bufReader.readLine().split(" ");
-                int u = Integer.parseInt(strArr[0]);
-                int v = Integer.parseInt(strArr[1]);
-                Vertex vertU = graph.get(u);
-                Vertex vertV = graph.get(v);
-                vertU.addNeighbor(vertV);
+                    if (!(graph.containsKey(u))) {
+                        Vertex U = new Vertex();
+                        U.setID(u);
+                        graph.put(u, U);
+                        currLineVertices.add(U);
+                    }
+                }
 
+                // Now, form edges between all vertices in line
+                for (Vertex v : currLineVertices) {
+                    for (Vertex u : currLineVertices) {
+                        if (v != u) {
+                            v.addNeighbor(u);
+                        }
+                    }
+                }
             }
 
         } catch (Exception e) {
@@ -87,8 +85,8 @@ public class MaximalCliquesWithoutPivot {
     }
 
     // Finds nbr of vertex i 
-    ArrayList<Vertex> getNbrs(Vertex v) {
-        int i = v.getX();
+    ArrayList<Vertex> getNeighbors(Vertex v) {
+        String i = v.getID();
         return graph.get(i).neighbors;
     }
 
@@ -101,7 +99,7 @@ public class MaximalCliquesWithoutPivot {
     }
 
     // Version without a Pivot 
-    void Bron_KerboschWithoutPivot(ArrayList<Vertex> R, ArrayList<Vertex> P,
+    void Bron_Kerbosch(ArrayList<Vertex> R, ArrayList<Vertex> P,
                                    ArrayList<Vertex> X, String pre) {
 
         if ((P.size() == 0) && (X.size() == 0)) {
@@ -113,8 +111,8 @@ public class MaximalCliquesWithoutPivot {
 
         for (Vertex v : P) {
             R.add(v);
-            Bron_KerboschWithoutPivot(R, intersect(P1, getNbrs(v)),
-                    intersect(X, getNbrs(v)), pre + "\t");
+            Bron_Kerbosch(R, intersect(P1, getNeighbors(v)),
+                    intersect(X, getNeighbors(v)), pre + " ");
             R.remove(v);
             P1.remove(v);
             X.add(v);
@@ -125,23 +123,23 @@ public class MaximalCliquesWithoutPivot {
 
         ArrayList<Vertex> X = new ArrayList<Vertex>();
         ArrayList<Vertex> R = new ArrayList<Vertex>();
-        ArrayList<Vertex> P = new ArrayList<Vertex>(graph);
-        Bron_KerboschWithoutPivot(R, P, X, "");
+        ArrayList<Vertex> P = new ArrayList<Vertex>(graph.values());
+        Bron_Kerbosch(R, P, X, "");
     }
 
     void printClique(ArrayList<Vertex> R) {
         System.out.print("Maximal Clique : ");
         for (Vertex v : R) {
-            System.out.print(" " + (v.getX()));
+            System.out.print(" " + (v.getID()));
         }
         System.out.println();
     }
 
     public static void main(String[] args) {
-        BufferedReader bufReader = null;
+        BufferedReader br = null;
         File file = new File("src/test.txt");
         try {
-            bufReader = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(file));
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -149,17 +147,10 @@ public class MaximalCliquesWithoutPivot {
         MaximalCliquesWithoutPivot ff = new MaximalCliquesWithoutPivot();
         System.out.println("Max Cliques Without Pivot");
         try {
-            int totalGraphs = ff.readTotalGraphCount(bufReader);
-            for (int i = 0; i < totalGraphs; i++) {
-                System.out.println("************** Start Graph " + (i + 1)
-                        + "******************************");
-                ff.readNextGraph(bufReader);
-                ff.Bron_KerboschPivotExecute();
-
-            }
+            ff.readNextGraph(br);
+            ff.Bron_KerboschPivotExecute();
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Exiting : " + e);
         }
     }
 } 
