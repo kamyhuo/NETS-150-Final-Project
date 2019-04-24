@@ -85,16 +85,22 @@ class App extends Component {
     this.state = {
       cuisine: null,
       price: null,
-      showing: false
+      showing: false,
+      done: true
     };
   }
     onFormSubmit = (cuisine, price, showing) => {
     this.setState({
       cuisine: cuisine,
       price: price,
-      showing: true
+      showing: true,
+      done: false
     })
   }
+
+  restartGame(event) {
+  this.setState({ done: true, showing: false });
+}
 
   render() {
     const { showing } = this.state;
@@ -124,10 +130,14 @@ class App extends Component {
             <br />
             </div>
           </h6>
-      <InputForm onFormSubmit = {this.onFormSubmit}/>
+      {this.state.done && <InputForm onFormSubmit = {this.onFormSubmit} />}
 
 { showing && ( <RestaurantList 
           cuisine = {this.state.cuisine} price = {this.state.price}/>)}
+
+         { showing && <button type="button" onClick={ this.restartGame.bind(this) }>
+  <span>Search again</span>
+</button> }
                     
         </header>
 
