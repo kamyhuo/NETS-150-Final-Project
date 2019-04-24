@@ -156,7 +156,8 @@ class RestaurantList extends Component {
     <div>
         {    (this.state.i < 5) ?     
             <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
-
+           <h5> Press your choice! </h5>
+            
             <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]);  this.setState(prevState => {
        return {i: prevState.i + 1}
     })}}><img src="NO.png" height="50px" width="50px" /></button>

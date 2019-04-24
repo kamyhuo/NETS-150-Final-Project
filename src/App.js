@@ -134,7 +134,7 @@ class App extends Component {
 
 { showing && ( <RestaurantList 
           cuisine = {this.state.cuisine} price = {this.state.price}/>)}
-
+<br />
          { showing && <button type="button" onClick={ this.restartGame.bind(this) }>
   <span>Search again</span>
 </button> }
