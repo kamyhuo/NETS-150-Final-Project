@@ -94,7 +94,7 @@ class RestaurantList extends Component {
 
     renderEmptyState () {
         return (
-            <h2 className = "heading-tertiary">Hang tight! We're working on finding your favorite restaurants in Philly!</h2>
+            <h2 className = "heading-tertiary">We're working on finding your favorite restaurants in Philly! If you keep seeing this message, click "Search again" and search within a different category.</h2>
         )
     }
 
