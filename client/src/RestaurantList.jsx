@@ -12,6 +12,7 @@ class Cl extends React.Component {
 
   render() {
     return (
+   <div> <h3> Here are all your liked restaurants! </h3> 
               <div style={{ width: "700px", margin: "auto" }}>
           <Carousel >
         
@@ -21,7 +22,7 @@ class Cl extends React.Component {
      
       </Carousel>
       </div>
-      
+      </div>
     );
   }
 }
@@ -38,7 +39,7 @@ class RestaurantList extends Component {
         errorState: null,
         loading: false,
         i: 0,
-        yes: [],
+        yes: [<h3> Here are the top 5 restaurants matching your preferences! </h3>],
         no: [],
         id: [],
         like: [],
@@ -153,7 +154,7 @@ class RestaurantList extends Component {
 
     <div>
         {    (this.state.i < 5) ?     
-            <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
+         <div> <h3>Here are your results! Vote below: </h3>  <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
            <h5> Press your choice! </h5>
             
             <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]);  this.setState(prevState => {
@@ -164,7 +165,7 @@ class RestaurantList extends Component {
                  this.state.like.push(<h4><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h4>); 
                  this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="YES.png" height="50px" width="50px"/></button></div> : null
+    })}}><img src="YES.png" height="50px" width="50px"/></button></div></div> : null 
 }
 
    
@@ -187,6 +188,7 @@ class RestaurantList extends Component {
 
 
         return (
+        <div>
 
             <section className="RestuarantList">
                 {this.state.results.length ? this.renderRestaurantInfo() : this.renderEmptyState()}
@@ -196,6 +198,7 @@ class RestaurantList extends Component {
                     <h1>{this.state.error}</h1>
                 }   
             </section>
+            </div>
         )}
 
 

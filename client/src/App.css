@@ -35,6 +35,7 @@
 }
 .boxed {
   border: 3px solid gray ;
+  background: gray;
 }
 
 $breakpoint-desktop: 992px;
