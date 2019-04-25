@@ -177,7 +177,7 @@ handleSubmit = async e => {
           <input
             type="text"
             value={this.state.post}
-            onChange={e => this.setState({ post: e.target.value })}
+            onChange={e => this.setState({ post: this.state.cuisine})}
           />
           <button type="submit">Submit</button>
         </form>
