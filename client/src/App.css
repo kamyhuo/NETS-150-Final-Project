@@ -34,8 +34,8 @@
   }
 }
 .boxed {
-  border: 3px solid gray ;
-  background: gray;
+  border: 3px solid #F6B902;
+  background: #F6B902;
 }
 
 $breakpoint-desktop: 992px;

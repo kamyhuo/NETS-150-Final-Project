@@ -40,7 +40,7 @@ class InputForm extends React.Component {
   render() {
     return (
       <form onSubmit={(e) => this.handleFormSubmit(e)}>
-      <h3> <u> START HERE: </u></h3>
+      <h3> START HERE:</h3>
         <label>
          <h5> Choose your cuisine:   &nbsp;
           <select value={this.state.cuisine} onChange={this.handleChange} name = 'cuisine'>
@@ -71,7 +71,6 @@ class InputForm extends React.Component {
           </select></h5>
         </label>
         </label>
-        <br />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -143,9 +142,7 @@ handleSubmit = async e => {
             <br />
             <br />
             <div class="boxed">
-            <br />
             <h2> How it works: </h2>
-            <br />
             1. Select your cuisine type
             <br />
             2. Select your price range
@@ -168,20 +165,6 @@ handleSubmit = async e => {
 </button> }
                     
         </header>
-
-        <p>{this.state.response}</p>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <strong>Post to Server:</strong>
-          </p>
-          <input
-            type="text"
-            value={this.state.post}
-            onChange={e => this.setState({ post: this.state.cuisine})}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <p>{this.state.responseToPost}</p>
       </div>
 
     );
