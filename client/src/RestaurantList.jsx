@@ -136,7 +136,7 @@ class RestaurantList extends Component {
                     <p className = "RestaurantInfo__reviewCount"> Based on {result.review_count} Reviews</p>
                
                     <a 
-                        href= {result.url} 
+                        href= {result.url} target="_blank"
                         className = "RestaurantInfo__website">
                             More information on Yelp
                     </a>
