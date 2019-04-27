@@ -138,7 +138,7 @@ class RestaurantList extends Component {
                
                     <a 
                         href= {result.url} 
-                        className = "RestaurantInfo__website">
+                        className = "RestaurantInfo__website"  target="_blank">
                             More information on Yelp
                     </a>
                     <a
