@@ -1,16 +1,47 @@
 {
-  "name": "example-create-react-app-express",
-  "version": "1.0.0",
-  "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-  },
+  "name": "nets150finalproject",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@kenshooui/react-multi-select": "^1.0.72",
+    "@khanacademy/react-multi-select": "^0.3.2",
+    "axiom": "^0.1.6",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "nuka-carousel": "^4.5.4",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-native": "^0.59.6",
+    "react-native-cli": "^2.0.1",
+    "react-native-snap-carousel": "^3.7.5",
+    "react-scripts": "2.1.8",
+    "react-select": "^2.4.3",
+    "react-slick": "^0.24.0",
+    "react-swipe-card": "^0.1.4",
+    "slick-carousel": "^1.8.1",
+    "yarn": "^1.15.2",
+    "yelp-fusion": "^3.0.0"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "font-awesome": "^4.7.0"
   }
 }
