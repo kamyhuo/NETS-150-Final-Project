@@ -12,6 +12,7 @@ class Cl extends React.Component {
 
   render() {
     return (
+   <div> <h3> Here are all your liked restaurants! </h3> 
               <div style={{ width: "700px", margin: "auto" }}>
           <Carousel >
         
@@ -21,7 +22,7 @@ class Cl extends React.Component {
      
       </Carousel>
       </div>
-      
+      </div>
     );
   }
 }
@@ -38,7 +39,7 @@ class RestaurantList extends Component {
         errorState: null,
         loading: false,
         i: 0,
-        yes: [],
+        yes: [<h3> Here are the top 5 restaurants matching your preferences! </h3>],
         no: [],
         id: [],
         like: [],
@@ -73,10 +74,8 @@ class RestaurantList extends Component {
         axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Philadelphia`, {
         //required authorization format from API 
         headers: {
-            //to get the API from the .env file use process.env.{variable name}
             Authorization: `Bearer bViYiVvQPGlIKygKlkCrFgsNcCnyNGJgUDCvTSG7dgooeyBjzEM-WzlkVhYsvItlMU-rNDno368sOtZxg2TWtpMgJXmyFIUSXgFzaK8UdwWOXQEL9sbY1yEZoCC5XHYx`
         },
-        //option params passed to API call to retrieve only breakfast and lunch spots 
         params: {
             categories: cuisine,
             price: price
@@ -96,7 +95,7 @@ class RestaurantList extends Component {
 
     renderEmptyState () {
         return (
-            <h2 className = "heading-tertiary">Hang tight! We're working on finding your favorite restaurants in Philly!</h2>
+            <h2 className = "heading-tertiary">We're working on finding your favorite restaurants in Philly! If you keep seeing this message, click "Search again" and search within a different category.</h2>
         )
     }
 
@@ -137,7 +136,7 @@ class RestaurantList extends Component {
                     <p className = "RestaurantInfo__reviewCount"> Based on {result.review_count} Reviews</p>
                
                     <a 
-                        href= {result.url} 
+                        href= {result.url} target="_blank"
                         className = "RestaurantInfo__website">
                             More information on Yelp
                     </a>
@@ -154,8 +153,8 @@ class RestaurantList extends Component {
         return(
 
     <div>
-        {    (this.state.i < 5 && !(this.state.i == RestaruantList.length)) ?     
-            <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
+        {    (this.state.i < 5) ?     
+         <div> <h3>Here are your results! Vote below: </h3>  <div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}
            <h5> Press your choice! </h5>
             
             <button onClick={(e) => {this.state.no.push(this.state.id[this.state.i]);  this.setState(prevState => {
@@ -166,14 +165,14 @@ class RestaurantList extends Component {
                  this.state.like.push(<h4><div className="RestuarantList__gallery">{RestaruantList[(this.state.i)]}</div></h4>); 
                  this.setState(prevState => {
        return {i: prevState.i + 1}
-    })}}><img src="YES.png" height="50px" width="50px"/></button></div> : null
+    })}}><img src="YES.png" height="50px" width="50px"/></button></div></div> : null 
 }
 
    
    
 
 
- {    (this.state.i == 5 || (this.state.i == RestaruantList.length)) ?    <Cl like = {this.state.like} />   : null  }
+ {    (this.state.i == 5) || (this.state.i = RestauantList.size()) ?    <Cl like = {this.state.like} />   : null  }
 
 
 
@@ -189,6 +188,7 @@ class RestaurantList extends Component {
 
 
         return (
+        <div>
 
             <section className="RestuarantList">
                 {this.state.results.length ? this.renderRestaurantInfo() : this.renderEmptyState()}
@@ -198,6 +198,7 @@ class RestaurantList extends Component {
                     <h1>{this.state.error}</h1>
                 }   
             </section>
+            </div>
         )}
 
 
