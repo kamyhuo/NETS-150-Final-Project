@@ -40,9 +40,9 @@ class InputForm extends React.Component {
   render() {
     return (
       <form onSubmit={(e) => this.handleFormSubmit(e)}>
-
+      <h3> START HERE:</h3>
         <label>
-          Cuisine (Asian, Mediterranean, etc.):    
+         <h5> Choose your cuisine:   &nbsp;
           <select value={this.state.cuisine} onChange={this.handleChange} name = 'cuisine'>
             <option value="newamerican">American (new)</option>
             <option value="tradamerican">American (Traditional)</option>
@@ -60,19 +60,17 @@ class InputForm extends React.Component {
             <option value="pizza">Pizza</option>
             <option value="sandwiches">Sandwiches</option>
             <option value="vegetarian">Vegetarian</option>
-          </select>
-<br />
+          </select></h5> 
            <label>
-          Pick your price range:
+      <h5>    Pick your price range: &nbsp;
 
           <select value={this.state.price} onChange={this.handleChange} name = 'price'>
             <option value="1">$</option>
             <option value="2">$$</option>
             <option value="3">$$$</option>
-          </select>
+          </select></h5>
         </label>
         </label>
-        <br />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -102,6 +100,35 @@ class App extends Component {
   this.setState({ done: true, showing: false });
 }
 
+state = {
+  response: '',
+  post: '',
+  responseToPost: '',
+};
+componentDidMount() {
+  this.callApi()
+    .then(res => this.setState({ response: res.express }))
+    .catch(err => console.log(err));
+}
+callApi = async () => {
+  const response = await fetch('/api/hello');
+  const body = await response.json();
+  if (response.status !== 200) throw Error(body.message);
+  return body;
+};
+handleSubmit = async e => {
+  e.preventDefault();
+  const response = await fetch('/api/world', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ post: this.state.post }),
+  });
+  const body = await response.text();
+  this.setState({ responseToPost: body });
+};
+
   render() {
     const { showing } = this.state;
     return (
@@ -109,20 +136,18 @@ class App extends Component {
         <header className="App-header">
 
       {<img src={require("./donut.png")} className="App-logo" alt = ""/>}
-      <h1> Welcome! </h1>
+      <h1> <b> Welcome! </b></h1>
           <h6>
             Your personalized Philly Restaurant recommender: bringing you the best Philly restaurants!
             <br />
             <br />
             <div class="boxed">
-            <br />
             <h2> How it works: </h2>
-            <br />
             1. Select your cuisine type
             <br />
             2. Select your price range
             <br />
-            3. You will be presented with the highest rated restaurants matching your preferences. <br />
+            3. You will be presented with the top 5 highest rated restaurants matching your preferences. <br />
             Click HEART if you are interested in the restaurant, and ANGRY FACE if you are not.<br />
              <br />
             At the end, you will be presented with all of your interested restaurants and<br />
@@ -132,15 +157,14 @@ class App extends Component {
           </h6>
       {this.state.done && <InputForm onFormSubmit = {this.onFormSubmit} />}
 
-{ showing && ( <RestaurantList 
-          cuisine = {this.state.cuisine} price = {this.state.price}/>)}
+{ showing && ( <div><RestaurantList 
+          cuisine = {this.state.cuisine} price = {this.state.price}/></div>)}
 <br />
          { showing && <button type="button" onClick={ this.restartGame.bind(this) }>
   <span>Search again</span>
 </button> }
                     
         </header>
-
       </div>
 
     );
