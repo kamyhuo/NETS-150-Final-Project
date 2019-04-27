@@ -51,7 +51,6 @@ public class MaximalCliquesWithoutPivot {
     // Reads Input 
     void readNextGraph(BufferedReader br) throws Exception  {
         try {
-            //initGraph();
             String str;
             ArrayList<Vertex> currLineVertices = new ArrayList<Vertex>();
             while ((str = br.readLine()) != null) {
@@ -84,31 +83,23 @@ public class MaximalCliquesWithoutPivot {
         }
     }
 
-    // Finds nbr of vertex i 
     ArrayList<Vertex> getNeighbors(Vertex v) {
         String i = v.getID();
         return graph.get(i).neighbors;
     }
 
-    // Intersection of two sets 
-    ArrayList<Vertex> intersect(ArrayList<Vertex> arlFirst,
-                                ArrayList<Vertex> arlSecond) {
+    ArrayList<Vertex> intersect(ArrayList<Vertex> arlFirst, ArrayList<Vertex> arlSecond) {
         ArrayList<Vertex> arlHold = new ArrayList<Vertex>(arlFirst);
         arlHold.retainAll(arlSecond);
         return arlHold;
     }
 
-    // Version without a Pivot 
-    void Bron_Kerbosch(ArrayList<Vertex> R, ArrayList<Vertex> P,
-                                   ArrayList<Vertex> X, String pre) {
-
+    void Bron_Kerbosch(ArrayList<Vertex> R, ArrayList<Vertex> P, ArrayList<Vertex> X, String pre) {
         if ((P.size() == 0) && (X.size() == 0)) {
             printClique(R);
             return;
         }
-
         ArrayList<Vertex> P1 = new ArrayList<Vertex>(P);
-
         for (Vertex v : P) {
             R.add(v);
             Bron_Kerbosch(R, intersect(P1, getNeighbors(v)),
@@ -120,7 +111,6 @@ public class MaximalCliquesWithoutPivot {
     }
 
     void Bron_KerboschPivotExecute() {
-
         ArrayList<Vertex> X = new ArrayList<Vertex>();
         ArrayList<Vertex> R = new ArrayList<Vertex>();
         ArrayList<Vertex> P = new ArrayList<Vertex>(graph.values());

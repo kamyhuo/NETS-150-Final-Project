@@ -1,10 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
-import Cards, { Card } from 'react-swipe-card'
 import './App.css';
 import RestaurantList from './RestaurantList';
-import ReactDOM from 'react-dom'
-import Carousel from './RestaurantList';
 
 
 class InputForm extends React.Component {
@@ -34,8 +31,6 @@ class InputForm extends React.Component {
     event.preventDefault();
     this.props.onFormSubmit(this.state.cuisine, this.state.price, this.state.showing)
   } 
-
-
 
   render() {
     return (
@@ -148,10 +143,9 @@ handleSubmit = async e => {
             2. Select your price range
             <br />
             3. You will be presented with the top 5 highest rated restaurants matching your preferences. <br />
-            Click HEART if you are interested in the restaurant, and ANGRY FACE if you are not.<br />
+            4. Click HEART if you are interested in the restaurant, and ANGRY FACE if you are not.<br />
              <br />
-            At the end, you will be presented with all of your interested restaurants and<br />
-            a STAR restaurant recommendation similar to ALL the restaurants you are interested in!<br />
+            At the end, you will be presented with all of your interested restaurants!<br />
             <br />
             </div>
           </h6>
@@ -171,7 +165,5 @@ handleSubmit = async e => {
   
 }
 }
-
-
 
 export default App;

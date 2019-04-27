@@ -5,13 +5,14 @@ Group Members:
 Varun Ramakrishnan & Kamy Huo
 
 Description:
-We made a web app that provides recommendations to users that are looking for restaurants in the Philadelphia area. We designed a frontend using React that allows the user to select their desired cuisine (out of 16 options) and their desired price range (as shown on Yelp, $, $$, $$$). After they click submit, we utilize the Yelp Fusion API to retrieve restaurant information and return a list of up to five restaurants, which the user can vote "yes" or "no" on. After this voting process, we display the user's "yes" options in a carousel view.
+We made a web app that provides recommendations to users that are looking for restaurants in the Philadelphia area. We designed a frontend using React that allows the user to select their desired cuisine (out of 16 options) and their desired price range (as shown on Yelp, $, $$, $$$). After they click submit, we utilize the Yelp Fusion API to retrieve restaurant information and return a list of up to five restaurant recommendations (which we derive from a graph of Yelp restaurants in Philadelphia), which the user can vote "yes" or "no" on. After this voting process, we display the user's chosen restaurants in a carousel view.
 
 Categories Used:
-1. Graph and Graph Algorithms: 
-2. Physical Networks (Internet):
-3. Recommendations: 
+1. Graph and Graph Algorithms: Using Java, I implemented the Bron Kerbosch Algorithm, which finds maximal cliques in a graph. On Yelp, I manually searched certain keywords ("brunch", "tacos", "curry"). Then, using the Yelp Fusion API, I manually typed in every restaurant ID into the text file "test.txt". Note that each line corresponds to a different keyword. After doing this, I fed this text file into "MaximalCliquesWithoutPivot.java", it outputted all of the maximal cliques within the graph of restaurants. This provided the basis of our Yelp API Fusion calls, as the chosen cuisine and price would control which maximal clique we pulled from for restaurant recommendations. Note that the Java file and its output isn't directly linked at all to our web app and API. We simply manually populated the information into the API when making calls to Yelp. 
+2. Physical Networks (Internet): As mentioned in the description, we heavily utilize the Yelp Fusion API. This enables us to pull restaurant data from Yelp based on inputted parameters. For example, we can use this API to pull all of the Japanese restaurants in the Philadelphia area in the "$$" price range. We made heavy use of this API in order to pull all restaurants data and display it to the user. Specifically, we displayed category, price, restuarant name, address, phone number, yelp rating, and yelp listing link to the user and retrieved this info using the API. 
+In order to get a feel for how this API worked and actually implement it in our application, we made heavy use of the Yelp Fusion API documentation and the Postman application, which helped us make isolated API calls and manually obtain restaurant data for testing purposes. 
+3. Recommendations: As noted before, we utilized the Bron Kerbosch graph algorithm to find recommendations for users. We basically tied each of the 16 cuisine categories to a maximal clique within our graph. Furthermore, within the clique, we always return a selection of up to 5 restaurants (less than 5 if the clique contains less than 5 restaurants). We found that using this algorithm returned appropriate recommendations and didn't stray too far away from the user's desired cuisine and price. 
 
 Allocation of Work:
-Varun - 
-Kamy - 
+Varun - Implementation of Bron Kerbosch, making manually API calls to populate database of restaurants, implementation of voting, refining API implementation, pushing to Heroku, final write-up
+Kamy - Design of homepage, implementing submission process for cuisine/price, implementation of Yelp Fusion API calls, implementation of final carousel view of recommendations, final write-up
