@@ -1,0 +1,17 @@
+Name: 
+Philly Restaurant Recommender
+
+Group Members: 
+Varun Ramakrishnan & Kamy Huo
+
+Description:
+We made a web app that provides recommendations to users that are looking for restaurants in the Philadelphia area. We designed a frontend using React that allows the user to select their desired cuisine (out of 16 options) and their desired price range (as shown on Yelp, $, $$, $$$). After they click submit, we utilize the Yelp Fusion API to retrieve restaurant information and return a list of up to five restaurants, which the user can vote "yes" or "no" on. After this voting process, we display the user's "yes" options in a carousel view.
+
+Categories Used:
+1. Graph and Graph Algorithms: 
+2. Physical Networks (Internet):
+3. Recommendations: 
+
+Allocation of Work:
+Varun - 
+Kamy - 
